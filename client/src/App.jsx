@@ -19,17 +19,17 @@ function App() {
 
   const dispatch = useDispatch()
 
-  const URL = 'http://localhost:3001/countries'
+  // const URL = 'http://localhost:3001/countries'
 
-  const URLA = 'http://localhost:3001/activities'
+  // const URLA = 'http://localhost:3001/activities'
 
   useEffect(()=>{
     const getallCountries= async()=>{
         try {
-          const {data} = await axios(URL)
+          const {data} = await axios('/countries')
           dispatch(getCountries(data))
     
-          const res= await axios(URLA)
+          const res= await axios('/activities')
           dispatch(getActivities(res.data))
             
         }catch (error) {

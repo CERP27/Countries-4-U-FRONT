@@ -26,7 +26,7 @@ const SearchBar = ()=>{
         setError('')
         const handleSearch = async()=>{
             try {
-                const {data} = await axios(`${URL}?name=${search}`)
+                const {data} = await axios(`/countries?name=${search}`)
                 dispatch(getCountryByName(data))
                 
             } catch (error) {

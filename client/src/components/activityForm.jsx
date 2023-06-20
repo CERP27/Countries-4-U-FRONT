@@ -11,7 +11,7 @@ const ActivityForm = ()=>{
 
     const navigate = useNavigate()
 
-    const URL = 'http://localhost:3001/activities'
+    // const URL = 'http://localhost:3001/activities'
 
     const dispatch = useDispatch();
     
@@ -38,6 +38,7 @@ const ActivityForm = ()=>{
         })
         validate()
     }
+    const [creating,setCreating] = useState(false)
 
     const validate = ()=>{
         let errorValidate = {}
@@ -82,13 +83,15 @@ const ActivityForm = ()=>{
         if(Object.values(error).length===0){
             
             try {
-                const {data} = await axios.post(URL,activityData)
+                const {data} = await axios.post('/activities',activityData)
+                setCreating(true)
                 dispatch(postActivity(data))
                 
-                const info = await axios(URL)                
+                const info = await axios('/countries')                
                 dispatch(getActivities(info.data))
-                
-                window.alert("¡¡Activity Created!!")
+
+
+                window.alert("¡Activity Created!")
                 navigate('/home')
                
             } catch (error) {
@@ -181,7 +184,7 @@ const ActivityForm = ()=>{
             <br/><br/>
 
             <div className={style.submit}>
-                <button>Submit Info</button>
+                <button disabled={creating}>Submit Info</button>
             </div>
 
         </form>

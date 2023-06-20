@@ -20,7 +20,7 @@ const DetailPage = ()=>{
     useEffect(()=>{
         const getCountryId = async()=>{
             try {
-                const {data} = await axios(`${URL}/${id}`)
+                const {data} = await axios(`/countries/${id}`)
                 dispatch(getCountryById(data))
             } catch (error) {
                 

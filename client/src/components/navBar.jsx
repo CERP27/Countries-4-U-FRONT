@@ -21,11 +21,11 @@ const NavBar = ()=>{
 
     const dispatch = useDispatch()
 
-    const URL = 'http://localhost:3001/countries'
+    // const URL = 'http://localhost:3001/countries'
     
     const getallCountries= async()=>{
         try {
-            const {data} = await axios(URL)
+            const {data} = await axios('/countries')
             
             dispatch(getCountries(data))
         } catch (error) {

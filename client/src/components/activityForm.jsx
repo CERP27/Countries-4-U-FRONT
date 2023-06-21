@@ -82,8 +82,8 @@ const ActivityForm = ()=>{
         event.preventDefault()
         if(Object.values(error).length===0){
             
+            setCreating(true)
             try {
-                setCreating(true)
                 const {data} = await axios.post('https://countries-4-u-back-production.up.railway.app/activities',activityData)
                 dispatch(postActivity(data))
                 

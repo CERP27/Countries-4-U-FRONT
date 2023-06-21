@@ -91,7 +91,7 @@ const ActivityForm = ()=>{
                 dispatch(getActivities(info.data))
 
 
-                window.alert("¡Activity Created!")
+                dispatch(getActivities(info.data)) && window.alert("¡Activity Created!")
                 navigate('/home')
                
             } catch (error) {

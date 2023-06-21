@@ -87,7 +87,7 @@ const ActivityForm = ()=>{
                 const {data} = await axios.post('https://countries-4-u-back-production.up.railway.app/activities',activityData)
                 dispatch(postActivity(data))
                 
-                const info = await axios('https://countries-4-u-back-production.up.railway.app/countries')                
+                const info = await axios('https://countries-4-u-back-production.up.railway.app/activities')                
                 dispatch(getActivities(info.data))
 
 

@@ -26,10 +26,10 @@ function App() {
   useEffect(()=>{
     const getallCountries= async()=>{
         try {
-          const {data} = await axios('/countries')
+          const {data} = await axios('https://countries-4-u-back-production.up.railway.app/countries')
           dispatch(getCountries(data))
     
-          const res= await axios('/activities')
+          const res= await axios('https://countries-4-u-back-production.up.railway.app/activities')
           dispatch(getActivities(res.data))
             
         }catch (error) {

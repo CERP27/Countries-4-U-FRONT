@@ -26,7 +26,7 @@ const SearchBar = ()=>{
         setError('')
         const handleSearch = async()=>{
             try {
-                const {data} = await axios(`/countries?name=${search}`)
+                const {data} = await axios(`https://countries-4-u-back-production.up.railway.app/countries?name=${search}`)
                 dispatch(getCountryByName(data))
                 
             } catch (error) {

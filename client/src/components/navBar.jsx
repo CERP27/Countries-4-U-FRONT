@@ -25,7 +25,7 @@ const NavBar = ()=>{
     
     const getallCountries= async()=>{
         try {
-            const {data} = await axios('/countries')
+            const {data} = await axios('https://countries-4-u-back-production.up.railway.app/countries')
             
             dispatch(getCountries(data))
         } catch (error) {

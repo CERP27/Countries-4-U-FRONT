@@ -83,11 +83,11 @@ const ActivityForm = ()=>{
         if(Object.values(error).length===0){
             
             try {
-                const {data} = await axios.post('/activities',activityData)
+                const {data} = await axios.post('https://countries-4-u-back-production.up.railway.app/activities',activityData)
                 setCreating(true)
                 dispatch(postActivity(data))
                 
-                const info = await axios('/countries')                
+                const info = await axios('https://countries-4-u-back-production.up.railway.app/countries')                
                 dispatch(getActivities(info.data))
 
 

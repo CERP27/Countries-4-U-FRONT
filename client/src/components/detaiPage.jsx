@@ -20,7 +20,7 @@ const DetailPage = ()=>{
     useEffect(()=>{
         const getCountryId = async()=>{
             try {
-                const {data} = await axios(`/countries/${id}`)
+                const {data} = await axios(`https://countries-4-u-back-production.up.railway.app/countries/${id}`)
                 dispatch(getCountryById(data))
             } catch (error) {
                 

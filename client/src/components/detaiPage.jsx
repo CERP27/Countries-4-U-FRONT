@@ -11,7 +11,7 @@ const DetailPage = ()=>{
 
     const {id} = useParams()
 
-    const URL = 'http://localhost:3001/countries'
+    const URL = 'https://countries-4-u-back-production.up.railway.app/countries'
     
     const dispatch = useDispatch()
 
@@ -20,7 +20,7 @@ const DetailPage = ()=>{
     useEffect(()=>{
         const getCountryId = async()=>{
             try {
-                const {data} = await axios(`https://countries-4-u-back-production.up.railway.app/countries/${id}`)
+                const {data} = await axios(`${URL}/${id}`)
                 dispatch(getCountryById(data))
             } catch (error) {
                 

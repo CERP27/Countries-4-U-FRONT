@@ -11,7 +11,7 @@ const ActivityForm = ()=>{
 
     const navigate = useNavigate()
 
-    // const URL = 'http://localhost:3001/activities'
+    const URL = 'https://countries-4-u-back-production.up.railway.app/activities'
 
     const dispatch = useDispatch();
     
@@ -27,6 +27,8 @@ const ActivityForm = ()=>{
 
     const [error,setError] = useState({})
 
+    const [creating,setCreating] = useState(false)
+
     useEffect(()=>{
         validate()
     },[activityData])
@@ -38,7 +40,6 @@ const ActivityForm = ()=>{
         })
         validate()
     }
-    const [creating,setCreating] = useState(false)
 
     const validate = ()=>{
         let errorValidate = {}
@@ -51,7 +52,7 @@ const ActivityForm = ()=>{
             errorValidate.name = 'Name can only have 50 characters'
         }
 
-        if(activityData.name.length > 0 && !/^[^0-9]*$/.test(activityData.name)){
+        if(activityData.name.length > 0 && !/^[a-zA-Z\s]*$/.test(activityData.name)){
             errorValidate.name = 'Name must contain only characters '
         }
 
@@ -81,17 +82,15 @@ const ActivityForm = ()=>{
     const handleSubmit = async(event)=>{
         event.preventDefault()
         if(Object.values(error).length===0){
-            
             setCreating(true)
+            
             try {
-                const {data} = await axios.post('https://countries-4-u-back-production.up.railway.app/activities',activityData)
+                const {data} = await axios.post(URL,activityData)
                 dispatch(postActivity(data))
-                
-                const info = await axios('https://countries-4-u-back-production.up.railway.app/activities')                
+                const info = await axios(URL)                
                 dispatch(getActivities(info.data))
 
-
-                dispatch(getActivities(info.data)) && window.alert("¡Activity Created!")
+                window.alert("¡Activity Created!")
                 navigate('/home')
                
             } catch (error) {

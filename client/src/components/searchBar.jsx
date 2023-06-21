@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import axios from 'axios';
 
-import {getCountryByName} from '../redux/countrySlice'
+import { getCountryByName } from '../redux/countrySlice'
 import style from './searchBar.module.css'
 
 const SearchBar = ()=>{
-    const URL = 'http://localhost:3001/countries'
+    const URL = 'https://countries-4-u-back-production.up.railway.app/countries'
 
     const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const SearchBar = ()=>{
         setError('')
         const handleSearch = async()=>{
             try {
-                const {data} = await axios(`https://countries-4-u-back-production.up.railway.app/countries?name=${search}`)
+                const {data} = await axios(`${URL}?name=${search}`)
                 dispatch(getCountryByName(data))
                 
             } catch (error) {

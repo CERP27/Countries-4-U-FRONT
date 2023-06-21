@@ -12,6 +12,7 @@ import HomePage from './components/homePage'
 import DetailPage from './components/detaiPage'
 import NavBar from './components/navBar'
 import ActivityForm from './components/activityForm'
+import BadRoute from './components/badRoute'
 
 function App() {
   
@@ -19,24 +20,24 @@ function App() {
 
   const dispatch = useDispatch()
 
-  // const URL = 'http://localhost:3001/countries'
+  const URL = 'https://countries-4-u-back-production.up.railway.app/countries'
 
-  // const URLA = 'http://localhost:3001/activities'
+  const URLA = 'https://countries-4-u-back-production.up.railway.app/activities'
 
   useEffect(()=>{
-    const getallCountries= async()=>{
+    const getallCountriesAndActivities= async()=>{
         try {
-          const {data} = await axios('https://countries-4-u-back-production.up.railway.app/countries')
+          const {data} = await axios(URL)
           dispatch(getCountries(data))
     
-          const res= await axios('https://countries-4-u-back-production.up.railway.app/activities')
+          const res= await axios(URLA)
           dispatch(getActivities(res.data))
             
         }catch (error) {
           throw error.message
         }
     }
-    getallCountries();
+    getallCountriesAndActivities();
 
   },[])
 
@@ -50,6 +51,7 @@ function App() {
         <Route path='/home' element={<HomePage/>}/>
         <Route path='/details/:id' element={<DetailPage/>}/>
         <Route path='/activity' element={<ActivityForm/>}/>
+        <Route path='*' element={<BadRoute/>}/>
       </Routes>
 
     </div>
